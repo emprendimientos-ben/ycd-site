@@ -35,25 +35,10 @@
     let running = null;
     brand.addEventListener("pointerenter", () => {
       if (!finePointer.matches || reduce.matches || running) return;
-      running = spin.animate([{ transform: "rotate(0deg)" }, { transform: "rotate(360deg)" }], { duration: 720, easing: EASE_IN_OUT });
+      running = spin.animate([{ transform: "rotate(45deg)" }, { transform: "rotate(405deg)" }], { duration: 720, easing: EASE_IN_OUT });
       running.onfinish = running.oncancel = () => { running = null; };
     });
   });
-
-  /* brand mark orbit follows the scroll; fallback where scroll timelines do not exist */
-  const orbit = document.querySelector(".brand .mark-orbit");
-  if (orbit && !(window.CSS && CSS.supports && CSS.supports("animation-timeline: scroll()"))) {
-    let ticking = false;
-    const turn = () => {
-      ticking = false;
-      if (reduce.matches) { orbit.style.transform = ""; return; }
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      const deg = max > 0 ? (window.scrollY / max) * 360 : 0;
-      orbit.style.transform = `rotate(${deg.toFixed(1)}deg)`;
-    };
-    window.addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(turn); } }, { passive: true });
-    turn();
-  }
 
   /* one authored entrance for the demo panel; observe the parent, the clipped element reports no intersection */
   document.querySelectorAll(".reveal").forEach((el) => once(el.parentElement, 0.08, () => el.classList.add("is-in")));
@@ -83,6 +68,15 @@
           : "Sin sistema: seis consultas esperando respuesta.";
       }
       if (reduce.matches) return;
+      if (state === "on") {
+        const scan = document.createElement("span");
+        scan.className = "scan";
+        list.appendChild(scan);
+        const h = list.offsetHeight;
+        list.style.position = "relative";
+        scan.animate([{ transform: "translateY(0)", opacity: 0 }, { opacity: 1, offset: 0.1 }, { opacity: 1, offset: 0.85 }, { transform: `translateY(${h}px)`, opacity: 0 }],
+          { duration: 820, easing: EASE_IN_OUT }).onfinish = () => scan.remove();
+      }
       rows.forEach((r, i) => {
         const dy = first.get(r) - r.getBoundingClientRect().top;
         if (Math.abs(dy) < 1) return;
@@ -137,17 +131,37 @@
       line.setAttribute("x2", (200 + Math.sin(a) * 186).toFixed(2));
       line.setAttribute("y2", (200 - Math.cos(a) * 186).toFixed(2));
       if (major) line.setAttribute("class", "major");
+      line.style.setProperty("--k", String(k));
       ticks.appendChild(line);
     }
-    const rot = document.querySelector(".dial-rot");
-    const scrollDriven = window.CSS && CSS.supports && CSS.supports("animation-timeline: view()");
-    if (rot && rot.animate && !scrollDriven) {
-      once(rot.closest(".dial-wrap"), 0.4, () => {
-        if (reduce.matches) return;
-        rot.animate([{ transform: "rotate(-120deg)" }, { transform: "rotate(30deg)" }], { duration: 2200, easing: EASE_OUT, fill: "forwards" });
-      });
-    }
   }
+
+  /* one orbit that lands: the satellite sweeps the dial once when it comes into view, ticks light behind it, the core answers */
+  const orbitOnce = (spin, duration) => spin && spin.animate
+    ? spin.animate([{ transform: "rotate(-315deg)" }, { transform: "rotate(45deg)" }], { duration, easing: EASE_IN_OUT, fill: "backwards" })
+    : null;
+  const dial = document.querySelector(".dial");
+  if (dial) {
+    const spin = dial.querySelector(".dial-spin");
+    const ripple = dial.querySelector(".ripple");
+    once(dial.closest(".dial-wrap"), 0.45, () => {
+      if (reduce.matches) { dial.classList.add("is-lit"); return; }
+      const a = orbitOnce(spin, 1800);
+      dial.classList.add("is-lit");
+      if (a && ripple) a.onfinish = () => ripple.animate(
+        [{ transform: "scale(1)", opacity: 0.7 }, { transform: "scale(1.7)", opacity: 0 }],
+        { duration: 900, easing: EASE_OUT });
+    });
+    const wrap = dial.closest(".dial-wrap");
+    let busy = null;
+    wrap.addEventListener("pointerenter", () => {
+      if (!finePointer.matches || reduce.matches || busy) return;
+      busy = spin.animate([{ transform: "rotate(45deg)" }, { transform: "rotate(405deg)" }], { duration: 900, easing: EASE_IN_OUT });
+      busy.onfinish = busy.oncancel = () => { busy = null; };
+    });
+  }
+  const closeMark = document.querySelector(".mark--orbit");
+  if (closeMark) once(closeMark, 0.6, () => { if (!reduce.matches) orbitOnce(closeMark.querySelector(".mark-spin"), 1400); });
 
   /* the intelligence layer: links drawn from each channel to the hub, signals travel along them */
   const net = document.getElementById("net");

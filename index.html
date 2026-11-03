@@ -81,15 +81,13 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
 .mark{width:28px;height:28px;color:var(--text);overflow:visible}
 .mark-ring{stroke:currentColor;stroke-opacity:.32}
 .mark-core{fill:var(--cyan);transform-box:view-box;transform-origin:16px 16px;animation:core-in .7s var(--ease-out) .15s both}
-.mark-orbit,.mark-spin{transform-box:view-box;transform-origin:16px 16px}
-.mark-spin{animation:mark-in 1.4s var(--ease-in-out) .25s both}
+.mark-spin{transform-box:view-box;transform-origin:16px 16px;transform:rotate(45deg)}
+.mark--intro .mark-spin{animation:mark-in 1.5s var(--ease-in-out) .25s both}
+.mark-trail{stroke:var(--cyan);stroke-opacity:.55}
+.mark--still .mark-core,.mark--orbit .mark-core{animation:none}
 .mark-sat{fill:var(--text)}
 @keyframes core-in{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:none}}
-@keyframes mark-in{from{transform:rotate(-360deg)}to{transform:rotate(0)}}
-@keyframes mark-orbit{to{transform:rotate(360deg)}}
-@supports (animation-timeline:scroll()){
-  .mark-orbit{animation:mark-orbit linear both;animation-timeline:scroll(root block)}
-}
+@keyframes mark-in{from{transform:rotate(-315deg)}to{transform:rotate(45deg)}}
 .nav{display:flex;align-items:center;gap:4px}
 .nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;color:var(--muted);text-decoration:none;font-size:.9375rem;transition:color .2s ease}
 @media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--text)}}
@@ -150,6 +148,9 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
 .demo-sum{display:grid;font:400 .875rem/1.4 var(--mono);color:var(--muted);text-align:right}
 .demo-sum>span{grid-area:1/1}
 .swap{transition:opacity .24s ease,filter .24s ease,visibility 0s linear 0s}
+.demo[data-state="on"] .r-st .s-on{transition-delay:calc(160ms + var(--i)*70ms)}
+.scan{position:absolute;left:0;right:0;top:0;height:1px;background:var(--cyan);opacity:0;pointer-events:none;z-index:2}
+.demo{position:relative}
 .demo[data-state="off"] .s-on,.demo[data-state="on"] .s-off{opacity:0;filter:blur(4px);visibility:hidden;transition:opacity .2s ease,filter .2s ease,visibility 0s linear .2s}
 .demo-head{display:grid;grid-template-columns:var(--cols-demo);gap:0 24px;padding:12px 20px;border-bottom:1px solid var(--line);font:400 .75rem/1.3 var(--mono);color:var(--faint);text-transform:uppercase;letter-spacing:.06em}
 .scale{display:flex;justify-content:space-between;text-transform:none;letter-spacing:0}
@@ -177,7 +178,13 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
 .demo-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:14px}
 @media (max-width:899px){
   .demo-head{display:none}
-  .row{grid-template-columns:1fr;gap:8px;padding:16px}
+  .row{grid-template-columns:1fr;gap:10px;padding:18px 16px}
+  .r-who{display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:baseline;gap:12px}
+  .r-biz{font-size:1.0625rem;letter-spacing:-.02em}
+  .r-src{padding:3px 7px;border:1px solid var(--line-2);font-size:.6875rem;color:var(--muted)}
+  .r-msg{padding-left:12px;border-left:1px solid var(--line-2);color:var(--text);font-size:1rem;line-height:1.45}
+  .demo[data-state="on"] .row.is-done .r-msg{color:var(--muted)}
+  .demo-sum{font-size:.8125rem}
   .r-wait{max-width:none}
   .demo-sum{text-align:left}
   .demo-bar{padding:12px}
@@ -196,12 +203,12 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
 .dial .core{fill:var(--cyan)}
 .dial .core-ring{fill:none;stroke:var(--cyan);stroke-opacity:.35;stroke-width:1}
 .dial .sat{fill:var(--text)}
-.dial .arm{stroke:var(--cyan);stroke-opacity:.5;stroke-width:1}
-.dial-rot{transform-box:view-box;transform-origin:200px 200px}
-@supports (animation-timeline:view()){
-  .dial-rot{animation:dial-turn linear both;animation-timeline:view();animation-range:entry 10% exit 90%}
-}
-@keyframes dial-turn{from{transform:rotate(-120deg)}to{transform:rotate(200deg)}}
+.dial .trail{fill:none;stroke:var(--cyan);stroke-opacity:.6;stroke-width:2}
+.dial .ripple{fill:none;stroke:var(--cyan);stroke-width:1;opacity:0;transform-box:view-box;transform-origin:200px 200px}
+.dial-spin{transform-box:view-box;transform-origin:200px 200px;transform:rotate(45deg)}
+.dial .ticks line{transition:stroke .5s ease calc(var(--k,0)*18ms)}
+.dial.is-lit .ticks line{stroke:var(--faint)}
+.dial.is-lit .ticks line.major{stroke:var(--ice)}
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:2rem}
 .tab{min-height:44px;padding:0 16px;border:1px solid var(--line-2);background:transparent;color:var(--muted);font:500 .9375rem/1 var(--font);cursor:pointer;transition:color .2s ease,border-color .2s ease,background-color .2s ease,transform .16s var(--ease-out)}
 .tab:active{transform:scale(.97)}
@@ -277,7 +284,8 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
 .team h3{padding:18px 20px;border-bottom:1px solid var(--line);font:600 1rem/1.3 var(--font);letter-spacing:-.01em;color:var(--text)}
 .person{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:20px;border-bottom:1px solid var(--line)}
 .person:last-child{border-bottom:0}
-.mono-av{display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--line-2);font:500 .9375rem/1 var(--mono);color:var(--ice);letter-spacing:.04em}
+.av{width:84px;height:84px;object-fit:cover;border:1px solid var(--line-2);filter:grayscale(1) brightness(.82) contrast(1.12);background:var(--bg);transition:filter .3s ease}
+@media (hover:hover) and (pointer:fine){.person:hover .av{filter:grayscale(0) brightness(.95) contrast(1.04)}}
 .person b{display:block;font-size:1.125rem;letter-spacing:-.02em}
 .person span{color:var(--muted);font-size:.9375rem}
 @media (max-width:899px){.own{grid-template-columns:1fr}}
@@ -286,6 +294,8 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
 .close{text-align:center;padding:clamp(5rem,10vw,9rem) 0;border-top:1px solid var(--line);position:relative;isolation:isolate}
 .close .h2{font-size:clamp(2.4rem,1.2rem + 4.6vw,4.75rem);max-width:14ch;margin-inline:auto}
 .close .lede{margin-inline:auto}
+.close-mark{display:flex;justify-content:center;margin-bottom:1.75rem}
+.close-mark .mark{width:52px;height:52px}
 .close-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:2.25rem}
 
 /* footer */
@@ -302,7 +312,7 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .hero-title .w,.hero-title .dot,.rise,.mark-core,.mark-spin{animation:fade .4s ease both}
-  .mark-orbit,.dial-rot{animation:none}
+  .mark--intro .mark-spin{animation:none}
   .method::before{animation:none;transition:none;transform:none}
   .js .reveal,.js .reveal:not(.is-in){clip-path:none;transition:none}
   .r-wait i,.switch-thumb,.panel,.panel[hidden]{transition-duration:.01s}
@@ -318,10 +328,10 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
 <header class="top wrap" id="top">
   <div class="bar">
     <a class="brand" href="#top" aria-label="YCD, inicio">
-      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+      <svg class="mark mark--intro" viewBox="0 0 32 32" aria-hidden="true">
         <circle class="mark-ring" cx="16" cy="16" r="11" fill="none" stroke-width="1.5"/>
         <circle class="mark-core" cx="16" cy="16" r="4.3"/>
-        <g class="mark-orbit"><g class="mark-spin"><circle class="mark-sat" cx="16" cy="5" r="2.5"/></g></g>
+        <g class="mark-spin"><circle class="mark-trail" cx="16" cy="16" r="11" fill="none" stroke-width="1.5" pathLength="100" stroke-dasharray="22 78" transform="rotate(-169 16 16)"/><circle class="mark-sat" cx="16" cy="5" r="2.5"/></g>
       </svg>
       <span>YCD</span>
     </a>
@@ -419,12 +429,10 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
           <circle class="ring-a" cx="200" cy="200" r="190"/>
           <g class="ticks" id="ticks"></g>
           <circle class="ring-b" cx="200" cy="200" r="122"/>
-          <g class="dial-rot">
-            <line class="arm" x1="200" y1="200" x2="200" y2="78"/>
-            <circle class="sat" cx="200" cy="78" r="7"/>
-          </g>
+          <circle class="ripple" cx="200" cy="200" r="46"/>
           <circle class="core-ring" cx="200" cy="200" r="46"/>
           <circle class="core" cx="200" cy="200" r="20"/>
+          <g class="dial-spin"><circle class="trail" cx="200" cy="200" r="122" pathLength="100" stroke-dasharray="22 78" transform="rotate(-169 200 200)"/><circle class="sat" cx="200" cy="78" r="8"/></g>
         </svg>
       </div>
       <div>
@@ -461,7 +469,11 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
       <div class="net" id="net" role="img" aria-label="Diagrama: YCD en el centro conecta WhatsApp, Instagram, formularios web, email, CRM, planillas, calendario, n8n, APIs, bases de datos, agentes de IA y voz.">
         <svg class="links" aria-hidden="true"></svg>
         <div class="hub" style="--x:50%;--y:50%" aria-hidden="true">
-          <svg class="mark" viewBox="0 0 32 32"><circle class="mark-ring" cx="16" cy="16" r="11" fill="none" stroke-width="1.5"/><circle cx="16" cy="16" r="4.3" fill="#6EDCF4"/><circle cx="16" cy="5" r="2.5" fill="#EDF6FC"/></svg>
+          <svg class="mark mark--still" viewBox="0 0 32 32" aria-hidden="true">
+        <circle class="mark-ring" cx="16" cy="16" r="11" fill="none" stroke-width="1.5"/>
+        <circle class="mark-core" cx="16" cy="16" r="4.3"/>
+        <g class="mark-spin"><circle class="mark-trail" cx="16" cy="16" r="11" fill="none" stroke-width="1.5" pathLength="100" stroke-dasharray="22 78" transform="rotate(-169 16 16)"/><circle class="mark-sat" cx="16" cy="5" r="2.5"/></g>
+      </svg>
           <strong>YCD</strong>
           <span>Capa de inteligencia</span>
         </div>
@@ -514,14 +526,19 @@ body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opa
       </div>
       <div class="team">
         <h3>Quiénes somos</h3>
-        <div class="person"><span class="mono-av" aria-hidden="true">BF</span><div><b>Benjamín Fridman</b><span>Cofundador</span></div></div>
-        <div class="person"><span class="mono-av" aria-hidden="true">EE</span><div><b>Elián Engelberg</b><span>Cofundador</span></div></div>
+        <div class="person"><img class="av" src="img/benjamin-fridman.jpg" width="84" height="84" alt="" loading="lazy" decoding="async"><div><b>Benjamín Fridman</b><span>Cofundador</span></div></div>
+        <div class="person"><img class="av" src="img/elian-engelberg.jpg" width="84" height="84" alt="" loading="lazy" decoding="async"><div><b>Elián Engelberg</b><span>Cofundador</span></div></div>
       </div>
     </div>
   </section>
 
   <section class="close" id="hablemos" aria-labelledby="close-title">
     <div class="wrap">
+      <div class="close-mark"><svg class="mark mark--orbit" viewBox="0 0 32 32" aria-hidden="true">
+        <circle class="mark-ring" cx="16" cy="16" r="11" fill="none" stroke-width="1.5"/>
+        <circle class="mark-core" cx="16" cy="16" r="4.3"/>
+        <g class="mark-spin"><circle class="mark-trail" cx="16" cy="16" r="11" fill="none" stroke-width="1.5" pathLength="100" stroke-dasharray="22 78" transform="rotate(-169 16 16)"/><circle class="mark-sat" cx="16" cy="5" r="2.5"/></g>
+      </svg></div>
       <h2 class="h2" id="close-title">Hablemos de tu proceso.</h2>
       <p class="lede">Una llamada de 10 a 15 minutos para entender cómo trabajan hoy y ver si hay algo para mejorar.</p>
       <div class="close-cta">
