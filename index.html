@@ -3,204 +3,541 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>YCD · Automatización e IA para empresas</title>
-<meta name="description" content="YCD detecta procesos manuales, repetitivos o desordenados dentro de una empresa y construye el sistema que los resuelve: automatización, IA aplicada e integraciones.">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'unsafe-inline'; img-src data:; base-uri 'none'; form-action 'none'">
+<title>YCD · Automatización e IA aplicada para empresas</title>
+<meta name="description" content="YCD convierte procesos manuales en sistemas inteligentes: atención con IA, seguimiento de consultas y presupuestos, integraciones y sistemas a medida para empresas de Argentina.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="theme-color" content="#05080D">
+<meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://ycdoficial.com/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_AR">
 <meta property="og:site_name" content="YCD">
-<meta property="og:title" content="YCD · Automatización e IA para empresas">
-<meta property="og:description" content="Convertimos procesos manuales en sistemas inteligentes.">
+<meta property="og:title" content="YCD · Convertimos procesos manuales en sistemas inteligentes">
+<meta property="og:description" content="Automatización, IA aplicada e integraciones construidas alrededor de cómo trabaja tu empresa.">
 <meta property="og:url" content="https://ycdoficial.com/">
 <meta name="twitter:card" content="summary">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2305080D'/%3E%3Ccircle cx='16' cy='16' r='8' fill='none' stroke='%236EDCF4' stroke-width='2.5'/%3E%3Ccircle cx='16' cy='16' r='3.5' fill='%236EDCF4'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2305080D'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='%23EDF6FC' stroke-opacity='.4' stroke-width='1.6'/%3E%3Ccircle cx='16' cy='16' r='4.2' fill='%236EDCF4'/%3E%3Ccircle cx='16' cy='6' r='2.4' fill='%23EDF6FC'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:"Geist";src:url("fonts/geist.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("fonts/geist-mono.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+
 :root{
-  --obsidian:#05080D;
-  --midnight:#08131F;
-  --graphite:#182330;
-  --cold:#EDF6FC;
-  --ice:#B9E9F8;
+  --bg:#05080D;
+  --bg-2:#08131F;
+  --bg-3:#0B1826;
+  --line:#182330;
+  --line-2:#243443;
+  --grid:rgba(237,246,252,.045);
+  --text:#EDF6FC;
+  --muted:#A3B5C4;
+  --faint:#71879A;
   --cyan:#6EDCF4;
-  --muted:#A9BDCB;
+  --ice:#B9E9F8;
+  --deep:#24516F;
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-in-out:cubic-bezier(.77,0,.175,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  --wrap:1200px;
+  --gutter:clamp(16px,4vw,40px);
+  --font:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  color-scheme:dark;
 }
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-body{margin:0;background:var(--obsidian);color:var(--cold);font:400 1.0625rem/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--ice);outline-offset:3px}
-.wrap{max-width:68rem;margin:0 auto;padding:0 1rem}
-@media (min-width:48rem){.wrap{padding:0 2rem}}
-.skip{position:absolute;left:-9999px;top:0}
-.skip:focus{left:1rem;top:1rem;z-index:10;background:var(--cyan);color:var(--obsidian);padding:.5rem .75rem;border-radius:.375rem}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:96px;scrollbar-color:var(--line-2) var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1.0625rem/1.6 var(--font);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:clip;caret-color:var(--cyan)}
+::selection{background:var(--cyan);color:var(--bg)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--line-2);border:2px solid var(--bg)}
+a{color:inherit;text-underline-offset:.22em;text-decoration-thickness:1px}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+img,svg{display:block}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{text-wrap:balance;font-weight:650;letter-spacing:-.04em}
+p{text-wrap:pretty}
+.wrap{width:min(var(--wrap),100% - 2*var(--gutter));margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:12px;top:-60px;z-index:30;background:var(--cyan);color:var(--bg);padding:10px 14px;font-weight:600;text-decoration:none}
+.skip:focus{top:12px}
+.icon{width:1.15em;height:1.15em;flex:none}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
 
-header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:1.25rem;padding-bottom:1.25rem}
-.brand{display:inline-flex;align-items:center;gap:.65rem;font-weight:650;letter-spacing:.06em;text-decoration:none}
-.core{position:relative;width:1.05rem;height:1.05rem;border:2px solid var(--cyan);border-radius:50%}
-.core::after{content:"";position:absolute;inset:.19rem;background:var(--cyan);border-radius:50%}
+/* column grid: aligned to the content container, it is the page's measuring frame */
+.cols{position:fixed;inset:0;z-index:0;pointer-events:none;display:grid;grid-template-columns:repeat(6,1fr);width:min(var(--wrap),100% - 2*var(--gutter));margin-inline:auto}
+.cols span{border-left:1px solid var(--grid)}
+.cols span:last-child{border-right:1px solid var(--grid)}
+@media (max-width:719px){.cols{grid-template-columns:repeat(2,1fr)}.cols span:nth-child(n+3){display:none}.cols span:nth-child(2){border-right:1px solid var(--grid)}}
+main,header,footer{position:relative;z-index:1}
+/* fine grain over the whole page: breaks the banding of the dark gradients, fixed so it never repaints on scroll */
+body::after{content:"";position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:2.75rem;padding:.6rem 1.25rem;border:1px solid var(--cyan);border-radius:.5rem;font-weight:600;line-height:1.2;text-decoration:none;text-align:center;transition:background-color .15s,color .15s}
-.btn-primary{background:var(--cyan);color:var(--obsidian)}
-.btn-primary:hover{background:var(--ice);border-color:var(--ice)}
-.btn-ghost{color:var(--cyan)}
-.btn-ghost:hover{background:rgba(110,220,244,.1)}
-.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin:2rem 0 1rem}
+/* header */
+.top{position:sticky;top:12px;z-index:20;margin-top:12px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;padding:9px 9px 9px 18px;border:1px solid var(--line);background:rgba(5,8,13,.72);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);transition:border-color .3s ease,background-color .3s ease}
+.top.is-stuck .bar{border-color:var(--line-2);background:rgba(8,19,31,.82)}
+.brand{display:inline-flex;align-items:center;gap:10px;min-height:44px;text-decoration:none;font-weight:700;font-size:1.25rem;letter-spacing:-.03em}
+.mark{width:28px;height:28px;color:var(--text);overflow:visible}
+.mark-ring{stroke:currentColor;stroke-opacity:.32}
+.mark-core{fill:var(--cyan);transform-box:view-box;transform-origin:16px 16px;animation:core-in .7s var(--ease-out) .15s both}
+.mark-orbit,.mark-spin{transform-box:view-box;transform-origin:16px 16px}
+.mark-spin{animation:mark-in 1.4s var(--ease-in-out) .25s both}
+.mark-sat{fill:var(--text)}
+@keyframes core-in{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:none}}
+@keyframes mark-in{from{transform:rotate(-360deg)}to{transform:rotate(0)}}
+@keyframes mark-orbit{to{transform:rotate(360deg)}}
+@supports (animation-timeline:scroll()){
+  .mark-orbit{animation:mark-orbit linear both;animation-timeline:scroll(root block)}
+}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;color:var(--muted);text-decoration:none;font-size:.9375rem;transition:color .2s ease}
+@media (hover:hover) and (pointer:fine){.nav a:hover{color:var(--text)}}
+.bar .btn{min-height:44px}
+@media (max-width:819px){.nav{display:none}}
 
-.hero{padding:clamp(2.5rem,8vw,6.5rem) 0 clamp(3rem,8vw,6rem)}
-.eyebrow{margin:0 0 1.25rem;color:var(--cyan);font-size:.8125rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
-h1{margin:0 0 1.5rem;max-width:21ch;font-size:clamp(2.1rem,4.6vw + .8rem,4rem);line-height:1.08;letter-spacing:-.02em;font-weight:700}
-.lead{max-width:40rem;margin:0 0 1.25rem;color:var(--muted);font-size:1.1875rem}
-.note{max-width:40rem;margin:0;color:var(--muted);font-size:.9375rem}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 22px;border:1px solid transparent;font:600 1rem/1.1 var(--font);letter-spacing:-.01em;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .2s ease,border-color .2s ease,color .2s ease,transform .16s var(--ease-out)}
+.btn:active{transform:scale(.97)}
+.btn .icon{transition:transform .2s var(--ease-out)}
+.btn-primary{background:var(--cyan);color:var(--bg)}
+.btn-ghost{border-color:var(--line-2);color:var(--text);background:rgba(5,8,13,.4)}
+@media (hover:hover) and (pointer:fine){
+  .btn-primary:hover{background:var(--ice)}
+  .btn-primary:hover .icon{transform:translateX(3px)}
+  .btn-ghost:hover{border-color:var(--deep);background:rgba(110,220,244,.06)}
+  .btn-ghost:hover .icon{transform:translateY(2px)}
+}
 
-.row{display:grid;gap:1.25rem;padding:clamp(2.25rem,6vw,4rem) 0;border-top:1px solid var(--graphite)}
-@media (min-width:56rem){.row{grid-template-columns:minmax(0,5fr) minmax(0,8fr);gap:3rem}}
-h2{margin:0;font-size:clamp(1.5rem,1.6vw + 1rem,2.1rem);line-height:1.2;letter-spacing:-.01em;font-weight:650}
-h3{margin:0 0 .35rem;font-size:1.0625rem;font-weight:650}
-p{margin:0 0 1rem}
-.list{margin:0;padding:0;list-style:none}
-.list li{padding:.9rem 0;border-bottom:1px solid var(--graphite)}
-.list li:first-child{padding-top:0}
-.list li:last-child{border-bottom:0;padding-bottom:0}
-.example{padding:1.1rem 0;border-bottom:1px solid var(--graphite)}
-.example:first-of-type{padding-top:0}
-.example:last-of-type{border-bottom:0;padding-bottom:0}
-.example p{margin:0;color:var(--muted)}
-.tag{display:inline-block;margin:0 0 1.25rem;color:var(--ice);font-size:.9375rem}
+/* hero */
+.hero{position:relative;padding:clamp(4.5rem,9vw,7.25rem) 0 clamp(2.75rem,5vw,4rem);text-align:center;isolation:isolate}
+.hero-title{max-width:16ch;margin-inline:auto;font-size:clamp(2.6rem,1.15rem + 5.9vw,5.75rem);line-height:.98;font-weight:680;letter-spacing:-.045em}
+.hero-title .w{display:inline-block;animation:word-in 1s var(--ease-out) calc(.18s + var(--i)*.06s) both}
+.hero-title .dot{display:inline-block;color:var(--cyan);animation:dot-in .7s var(--ease-out) .82s both}
+@keyframes word-in{from{opacity:0;filter:blur(12px);transform:translateY(.28em)}to{opacity:1;filter:blur(0);transform:none}}
+@keyframes dot-in{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+.hero-sub{max-width:36rem;margin:1.75rem auto 0;color:var(--muted);font-size:clamp(1.0625rem,.98rem + .4vw,1.25rem);line-height:1.55}
+.hero-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:2.25rem}
+.tags{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:10px 18px;margin:2.25rem 0 0;padding:0;list-style:none;color:var(--muted);font-size:.9375rem}
+.tags li{display:inline-flex;align-items:center;gap:18px}
+.tags li+li::before{content:"";width:9px;height:9px;background:linear-gradient(var(--faint),var(--faint)) center/9px 1.5px no-repeat,linear-gradient(var(--faint),var(--faint)) center/1.5px 9px no-repeat}
+@media (max-width:519px){
+  .hero-cta{flex-direction:column;align-items:stretch;max-width:340px;margin-inline:auto}
+  .tags{gap:10px 22px}
+  .tags li+li::before{display:none}
+}
+.rise{animation:rise .9s var(--ease-out) both}
+.d1{animation-delay:.55s}.d2{animation-delay:.66s}.d3{animation-delay:.78s}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-.steps{display:flex;flex-wrap:wrap;gap:.5rem 1.75rem;margin:0 0 1.5rem;padding:0;list-style:none;counter-reset:step}
-.steps li{counter-increment:step;font-weight:600}
-.steps li::before{content:counter(step,decimal-leading-zero);margin-right:.5rem;color:var(--cyan);font-weight:500;font-variant-numeric:tabular-nums}
+/* sections */
+.sec{padding:clamp(4.5rem,9vw,8rem) 0;border-top:1px solid var(--line)}
+#demo{padding-top:clamp(3rem,6vw,4.75rem)}
+.h2{font-size:clamp(2rem,1.2rem + 3vw,3.5rem);line-height:1.02}
+.lede{max-width:38rem;margin-top:1.25rem;color:var(--muted);font-size:1.125rem}
+.note{font:400 .875rem/1.5 var(--font);color:var(--faint)}
 
-.cta{background:var(--midnight);border-top:1px solid var(--graphite)}
-.cta .row{border-top:0}
-.contact{margin:1rem 0 0;color:var(--muted);font-size:.9375rem}
+/* demo: one week of inquiries, without and with a system */
+.demo-intro{display:grid;gap:1.25rem;max-width:64rem}
+.demo{margin-top:clamp(2.5rem,5vw,3.5rem);border:1px solid var(--line);background:var(--bg-2)}
+.demo-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;padding:14px;border-bottom:1px solid var(--line)}
+.switch{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:4px;border:1px solid var(--line-2);background:var(--bg)}
+.switch-thumb{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);background:var(--text);transition:transform .32s var(--ease-in-out)}
+.demo[data-state="on"] .switch-thumb{transform:translateX(100%);background:var(--cyan)}
+.switch button{position:relative;z-index:1;min-height:44px;padding:0 18px;border:0;background:none;color:var(--muted);font:600 .9375rem/1 var(--font);cursor:pointer;transition:color .32s var(--ease-in-out)}
+.switch button[aria-pressed="true"]{color:var(--bg)}
+.switch button:focus-visible{outline-offset:-2px}
+.demo-sum{display:grid;font:400 .875rem/1.4 var(--mono);color:var(--muted);text-align:right}
+.demo-sum>span{grid-area:1/1}
+.swap{transition:opacity .24s ease,filter .24s ease,visibility 0s linear 0s}
+.demo[data-state="off"] .s-on,.demo[data-state="on"] .s-off{opacity:0;filter:blur(4px);visibility:hidden;transition:opacity .2s ease,filter .2s ease,visibility 0s linear .2s}
+.demo-head{display:grid;grid-template-columns:var(--cols-demo);gap:0 24px;padding:12px 20px;border-bottom:1px solid var(--line);font:400 .75rem/1.3 var(--mono);color:var(--faint);text-transform:uppercase;letter-spacing:.06em}
+.scale{display:flex;justify-content:space-between;text-transform:none;letter-spacing:0}
+.demo{--cols-demo:minmax(170px,1.05fr) minmax(0,1.7fr) minmax(150px,1fr) minmax(190px,1.05fr)}
+.rows{margin:0;padding:0;list-style:none}
+.row{display:grid;grid-template-columns:var(--cols-demo);gap:6px 24px;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--bg-2);position:relative}
+.row:last-child{border-bottom:0}
+.r-who{display:grid;gap:2px}
+.r-src{font:400 .75rem/1.3 var(--mono);color:var(--faint)}
+.r-biz{font-weight:600;font-size:.9375rem;letter-spacing:-.01em}
+.r-msg{color:var(--muted);font-size:.9375rem}
+.r-wait{height:14px;position:relative;background:linear-gradient(var(--line-2),var(--line-2)) 0 50%/1px 100% no-repeat,linear-gradient(var(--line),var(--line)) 33.33% 50%/1px 8px no-repeat,linear-gradient(var(--line),var(--line)) 66.66% 50%/1px 8px no-repeat,linear-gradient(var(--line),var(--line)) 100% 50%/1px 8px no-repeat}
+.r-wait i{position:absolute;left:0;right:0;top:4px;bottom:4px;background:#3A4C5E;transform-origin:left center;transform:scaleX(var(--w));transition:transform .62s var(--ease-in-out) calc(var(--i)*55ms),background-color .3s ease calc(var(--i)*55ms)}
+.demo[data-state="on"] .r-wait i{transform:scaleX(.018);background:var(--cyan)}
+.r-st{display:grid;font-size:.9375rem}
+.r-st>span{grid-area:1/1;display:grid;gap:2px}
+.r-st b{font-weight:600}
+.r-st small{font:400 .8125rem/1.35 var(--font);color:var(--faint)}
+.r-st .s-on b{display:inline-flex;align-items:center;gap:8px;color:var(--text)}
+.r-st .s-on .icon{color:var(--cyan);width:1em;height:1em}
+.row.is-person .s-on b{color:var(--cyan)}
+.row.is-person::after{content:"";position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--cyan);opacity:0;transition:opacity .3s ease .4s}
+.demo[data-state="on"] .row.is-person::after{opacity:1}
+.demo[data-state="on"] .row.is-done .r-msg{color:var(--faint)}
+.demo-foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:14px}
+@media (max-width:899px){
+  .demo-head{display:none}
+  .row{grid-template-columns:1fr;gap:8px;padding:16px}
+  .r-wait{max-width:none}
+  .demo-sum{text-align:left}
+  .demo-bar{padding:12px}
+  .switch{width:100%}
+}
 
-footer{border-top:1px solid var(--graphite)}
-footer .wrap{padding-top:1.75rem;padding-bottom:2.5rem;color:var(--muted);font-size:.875rem}
-footer p{margin:0 0 .6rem}
+/* applied intelligence: the instrument and what it does */
+.ia{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(2.5rem,6vw,6rem);align-items:center}
+.dial-wrap{position:relative;display:grid;place-items:center;aspect-ratio:1;max-width:440px;width:100%;margin-inline:auto}
+.dial-wrap::before{content:"";position:absolute;inset:12%;background:radial-gradient(closest-side,rgba(110,220,244,.12),transparent 70%);pointer-events:none}
+.dial{width:100%;height:auto;overflow:visible}
+.dial .ticks line{stroke:var(--line-2);stroke-width:1}
+.dial .ticks line.major{stroke:var(--faint)}
+.dial .ring-a{fill:none;stroke:var(--line);stroke-width:1}
+.dial .ring-b{fill:none;stroke:var(--deep);stroke-width:1}
+.dial .core{fill:var(--cyan)}
+.dial .core-ring{fill:none;stroke:var(--cyan);stroke-opacity:.35;stroke-width:1}
+.dial .sat{fill:var(--text)}
+.dial .arm{stroke:var(--cyan);stroke-opacity:.5;stroke-width:1}
+.dial-rot{transform-box:view-box;transform-origin:200px 200px}
+@supports (animation-timeline:view()){
+  .dial-rot{animation:dial-turn linear both;animation-timeline:view();animation-range:entry 10% exit 90%}
+}
+@keyframes dial-turn{from{transform:rotate(-120deg)}to{transform:rotate(200deg)}}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:2rem}
+.tab{min-height:44px;padding:0 16px;border:1px solid var(--line-2);background:transparent;color:var(--muted);font:500 .9375rem/1 var(--font);cursor:pointer;transition:color .2s ease,border-color .2s ease,background-color .2s ease,transform .16s var(--ease-out)}
+.tab:active{transform:scale(.97)}
+.tab[aria-selected="true"]{border-color:var(--cyan);color:var(--text);background:rgba(110,220,244,.07)}
+@media (hover:hover) and (pointer:fine){.tab:hover{color:var(--text);border-color:var(--deep)}}
+.panels{display:grid;margin-top:1.25rem;border-top:1px solid var(--line)}
+.panel{grid-area:1/1;padding-top:1.25rem;transition:opacity .26s ease,filter .26s ease,transform .26s var(--ease-out)}
+.panel[hidden]{display:block;opacity:0;filter:blur(4px);transform:translateY(6px);visibility:hidden;pointer-events:none;transition:opacity .18s ease,filter .18s ease,transform .18s ease,visibility 0s linear .18s}
+.panel p{max-width:34rem;font-size:1.125rem;color:var(--text)}
+.panel .note{margin-top:.75rem;font-size:.8125rem;color:var(--faint)}
+@media (max-width:899px){.ia{grid-template-columns:1fr}.dial-wrap{max-width:280px}}
 
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+/* intelligence layer diagram */
+.capa-head{text-align:center;display:grid;justify-items:center;gap:1.25rem}
+.capa-head .lede{margin-top:0}
+.net{position:relative;margin-top:clamp(2.5rem,5vw,4rem);border:1px solid var(--line);background:radial-gradient(closest-side at 50% 50%,rgba(36,52,67,.45),transparent 62%),var(--bg);aspect-ratio:16/10;overflow:hidden}
+.net svg.links{position:absolute;inset:0;width:100%;height:100%}
+.net .link{stroke:var(--line-2);stroke-width:1;fill:none;transition:stroke .25s ease,stroke-opacity .25s ease}
+.net.is-hover .link{stroke-opacity:.35}
+.net .link.is-on{stroke:var(--cyan);stroke-opacity:1}
+.net .link.draw{stroke-dasharray:var(--len);stroke-dashoffset:0}
+.net.is-drawing .link.draw{animation:draw .9s var(--ease-in-out) calc(var(--i)*45ms) both}
+@keyframes draw{from{stroke-dashoffset:var(--len)}to{stroke-dashoffset:0}}
+.node,.hub{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%)}
+.node{padding:8px 12px;border:1px solid var(--line-2);background:var(--bg-2);font:400 .8125rem/1.2 var(--mono);color:var(--muted);white-space:nowrap;transition:color .25s ease,border-color .25s ease}
+.node.is-on{color:var(--text);border-color:var(--cyan)}
+.hub{display:grid;justify-items:center;gap:10px;width:clamp(170px,22%,250px);padding:26px 18px;border:1px solid var(--cyan);background:var(--bg-2);text-align:center;box-shadow:0 18px 60px rgba(0,0,0,.55)}
+.hub strong{font-size:1.75rem;letter-spacing:-.04em;line-height:1}
+.hub span{font:400 .875rem/1.3 var(--font);color:var(--muted)}
+.hub .mark{width:34px;height:34px}
+.pulse{position:absolute;left:0;top:0;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;background:var(--cyan);pointer-events:none;opacity:0}
+.net-note{margin-top:14px;text-align:center}
+@media (max-width:719px){
+  .net{aspect-ratio:auto;height:640px}
+  .node{font-size:.75rem;padding:7px 9px}
+  .hub{width:38%;padding:18px 10px}
+}
+
+/* method */
+.method{margin-top:clamp(2.5rem,5vw,3.5rem);display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line);position:relative;padding:0;list-style:none}
+.method::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:100%;background:var(--cyan);transform-origin:left center;transform:scaleX(var(--p,0));transition:transform 1.4s var(--ease-in-out)}
+.method.is-in{--p:1}
+@supports (animation-timeline:view()){
+  .method::before{transition:none;animation:fill linear both;animation-timeline:view();animation-range:entry 40% cover 55%}
+}
+@keyframes fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.step{padding:1.25rem 1rem 0 0;border-right:0;position:relative}
+.step::before{content:"";position:absolute;left:0;top:-4px;width:7px;height:7px;background:var(--bg);border:1px solid var(--cyan)}
+.step h3{font-size:1.125rem;letter-spacing:-.02em;margin-top:.5rem}
+.step p{margin-top:.5rem;color:var(--muted);font-size:.9375rem;line-height:1.5}
+.method-foot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;margin-top:clamp(2.5rem,5vw,3.5rem);padding-top:1.5rem;border-top:1px solid var(--line)}
+.method-foot p{color:var(--muted)}
+.method-foot strong{color:var(--text);font-weight:600}
+@media (max-width:1023px){
+  .method{grid-template-columns:1fr;border-top:0;border-left:1px solid var(--line);padding-left:22px}
+  .method::before{left:-1px;top:0;width:1px;height:100%;transform-origin:top center;transform:scaleY(var(--p,0))}
+  @supports (animation-timeline:view()){.method::before{animation-name:fill-y}}
+  .step{padding:0 0 1.75rem}
+  .step::before{left:-26px;top:.55rem}
+  .step h3{margin-top:0}
+  .method-foot{grid-template-columns:1fr}
+}
+@keyframes fill-y{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+
+/* own system + team */
+.own{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(2.5rem,6vw,6rem);align-items:start}
+.flow{margin:2rem 0 0;padding:0;list-style:none;border-top:1px solid var(--line)}
+.flow li{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;padding:1.1rem 0;border-bottom:1px solid var(--line)}
+.flow .icon{color:var(--cyan);width:22px;height:22px;margin-top:2px}
+.flow b{display:block;font-weight:600;letter-spacing:-.01em}
+.flow span{color:var(--muted);font-size:.9375rem}
+.team{border:1px solid var(--line);background:var(--bg-2)}
+.team h3{padding:18px 20px;border-bottom:1px solid var(--line);font:600 1rem/1.3 var(--font);letter-spacing:-.01em;color:var(--text)}
+.person{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;padding:20px;border-bottom:1px solid var(--line)}
+.person:last-child{border-bottom:0}
+.mono-av{display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--line-2);font:500 .9375rem/1 var(--mono);color:var(--ice);letter-spacing:.04em}
+.person b{display:block;font-size:1.125rem;letter-spacing:-.02em}
+.person span{color:var(--muted);font-size:.9375rem}
+@media (max-width:899px){.own{grid-template-columns:1fr}}
+
+/* close */
+.close{text-align:center;padding:clamp(5rem,10vw,9rem) 0;border-top:1px solid var(--line);position:relative;isolation:isolate}
+.close .h2{font-size:clamp(2.4rem,1.2rem + 4.6vw,4.75rem);max-width:14ch;margin-inline:auto}
+.close .lede{margin-inline:auto}
+.close-cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:2.25rem}
+
+/* footer */
+.foot{border-top:1px solid var(--line);padding:2rem 0 2.5rem;color:var(--faint);font-size:.875rem}
+.foot .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px}
+.foot a{color:var(--muted)}
+@media (hover:hover) and (pointer:fine){.foot a:hover{color:var(--text)}}
+
+/* reveal for the demo panel: one authored entrance */
+.reveal{clip-path:inset(0 0 0 0)}
+.js .reveal:not(.is-in){clip-path:inset(0 0 100% 0)}
+.js .reveal{transition:clip-path .8s var(--ease-in-out)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero-title .w,.hero-title .dot,.rise,.mark-core,.mark-spin{animation:fade .4s ease both}
+  .mark-orbit,.dial-rot{animation:none}
+  .method::before{animation:none;transition:none;transform:none}
+  .js .reveal,.js .reveal:not(.is-in){clip-path:none;transition:none}
+  .r-wait i,.switch-thumb,.panel,.panel[hidden]{transition-duration:.01s}
+  .net.is-drawing .link.draw{animation:none}
+}
+@keyframes fade{from{opacity:0}to{opacity:1}}
 </style>
 </head>
 <body>
-<a class="skip" href="#contenido">Ir al contenido</a>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="cols" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
 
-<header>
-  <div class="wrap">
-    <a class="brand" href="./" aria-label="YCD, inicio"><span class="core" aria-hidden="true"></span>YCD</a>
-    <a class="btn btn-ghost" href="#hablemos">Hablemos</a>
+<header class="top wrap" id="top">
+  <div class="bar">
+    <a class="brand" href="#top" aria-label="YCD, inicio">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle class="mark-ring" cx="16" cy="16" r="11" fill="none" stroke-width="1.5"/>
+        <circle class="mark-core" cx="16" cy="16" r="4.3"/>
+        <g class="mark-orbit"><g class="mark-spin"><circle class="mark-sat" cx="16" cy="5" r="2.5"/></g></g>
+      </svg>
+      <span>YCD</span>
+    </a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#demo">Cómo funciona</a>
+      <a href="#capa">Qué construimos</a>
+      <a href="#equipo">Equipo</a>
+    </nav>
+    <a class="btn btn-primary" href="https://ig.me/m/benja.fridman" target="_blank" rel="noopener noreferrer">Hablar con YCD</a>
   </div>
 </header>
 
-<main id="contenido">
-  <section class="hero">
+<main id="main">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <h1 class="hero-title" id="hero-title"><span class="w" style="--i:0">Convertimos</span> <span class="w" style="--i:1">procesos</span> <span class="w" style="--i:2">manuales</span> <span class="w" style="--i:3">en</span> <span class="w" style="--i:4">sistemas</span> <span class="w" style="--i:5">inteligentes</span><span class="dot">.</span></h1>
+    <p class="hero-sub rise d1">Automatizamos ventas, atención y operaciones con IA para que tu empresa haga más con menos trabajo manual.</p>
+    <div class="hero-cta rise d2">
+      <a class="btn btn-primary" href="https://ig.me/m/benja.fridman" target="_blank" rel="noopener noreferrer">Hablar con YCD<svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+      <a class="btn btn-ghost" href="#demo">Ver cómo funciona<svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z"/></svg></a>
+    </div>
+    <ul class="tags rise d3" aria-label="Lo que hacemos">
+      <li>IA aplicada</li><li>Automatización</li><li>Integraciones</li><li>Sistemas a medida</li>
+    </ul>
+  </section>
+
+  <section class="sec" id="demo" aria-labelledby="demo-title">
     <div class="wrap">
-      <p class="eyebrow">Automatización e IA aplicada a empresas</p>
-      <h1>Convertimos procesos manuales en sistemas inteligentes.</h1>
-      <p class="lead">Detectamos dónde tu empresa pierde tiempo, consultas o seguimiento, y construimos el sistema que lo resuelve. El sistema se ocupa de lo repetitivo; las personas entran cuando hace falta criterio.</p>
-      <div class="actions">
-        <a class="btn btn-primary" href="https://ig.me/m/benja.fridman" target="_blank" rel="noopener noreferrer">Agendá 15 minutos</a>
-        <a class="btn btn-ghost" href="mailto:solutions@ycdoficial.com?subject=Quiero%20hablar%20con%20YCD">Escribinos por mail</a>
+      <div class="demo-intro">
+        <h2 class="h2" id="demo-title">El problema no es recibir consultas. Es lo que pasa después.</h2>
+        <p class="lede">La misma semana de consultas de una empresa, con y sin un sistema que las ordene. Cambiá entre las dos.</p>
       </div>
-      <p class="note">Escribinos por Instagram y te proponemos horarios para una llamada corta.</p>
+
+      <div class="demo reveal" data-state="off" id="bandeja">
+        <div class="demo-bar">
+          <div class="switch" role="group" aria-label="Ver la bandeja">
+            <span class="switch-thumb" aria-hidden="true"></span>
+            <button type="button" data-set="off" aria-pressed="true">Sin sistema</button>
+            <button type="button" data-set="on" aria-pressed="false">Con sistema</button>
+          </div>
+          <p class="demo-sum"><span class="swap s-off">6 consultas esperando respuesta</span><span class="swap s-on">5 resueltas por el sistema · 1 para una persona</span></p>
+        </div>
+        <div class="demo-head" aria-hidden="true">
+          <span>Consulta</span><span>Mensaje</span><span class="scale"><span>0 h</span><span>24 h</span><span>48 h</span><span>72 h</span></span><span>Estado</span>
+        </div>
+        <ol class="rows" aria-label="Consultas de ejemplo">
+          <li class="row is-done" data-on="1" style="--i:0">
+            <span class="r-who"><span class="r-src">WhatsApp</span><span class="r-biz">Inmobiliaria</span></span>
+            <span class="r-msg">¿Sigue disponible el departamento de Palermo?</span>
+            <span class="r-wait" aria-hidden="true"><i style="--w:.07"></i></span>
+            <span class="r-st"><span class="swap s-off"><b>Sin responder</b><small>hace 5 h</small></span><span class="swap s-on"><b><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>Respondida</b><small>con una visita propuesta</small></span></span>
+          </li>
+          <li class="row is-done" data-on="2" style="--i:1">
+            <span class="r-who"><span class="r-src">Formulario</span><span class="r-biz">Clínica</span></span>
+            <span class="r-msg">Quiero un turno para la semana que viene.</span>
+            <span class="r-wait" aria-hidden="true"><i style="--w:.125"></i></span>
+            <span class="r-st"><span class="swap s-off"><b>Esperando</b><small>hace 9 h</small></span><span class="swap s-on"><b><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>Horarios ofrecidos</b><small>la persona elige y queda agendado</small></span></span>
+          </li>
+          <li class="row is-done" data-on="3" style="--i:2">
+            <span class="r-who"><span class="r-src">Instagram</span><span class="r-biz">Distribuidora</span></span>
+            <span class="r-msg">Somos revendedores, ¿tienen precio por cantidad?</span>
+            <span class="r-wait" aria-hidden="true"><i style="--w:.28"></i></span>
+            <span class="r-st"><span class="swap s-off"><b>Visto</b><small>ayer</small></span><span class="swap s-on"><b><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>Derivada a ventas</b><small>con el pedido resumido</small></span></span>
+          </li>
+          <li class="row is-person" data-on="0" style="--i:3">
+            <span class="r-who"><span class="r-src">Email</span><span class="r-biz">Constructora</span></span>
+            <span class="r-msg">Necesitamos algo a medida para tres obras.</span>
+            <span class="r-wait" aria-hidden="true"><i style="--w:.36"></i></span>
+            <span class="r-st"><span class="swap s-off"><b>Sin responder</b><small>hace 1 día</small></span><span class="swap s-on"><b><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg>Para una persona</b><small>necesita criterio, va con resumen</small></span></span>
+          </li>
+          <li class="row is-done" data-on="4" style="--i:4">
+            <span class="r-who"><span class="r-src">Consulta web</span><span class="r-biz">Alquiler temporario</span></span>
+            <span class="r-msg">¿Tienen disponibilidad del 14 al 18?</span>
+            <span class="r-wait" aria-hidden="true"><i style="--w:.67"></i></span>
+            <span class="r-st"><span class="swap s-off"><b>Sin responder</b><small>hace 2 días</small></span><span class="swap s-on"><b><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>Respondida</b><small>al instante, con fechas libres</small></span></span>
+          </li>
+          <li class="row is-done" data-on="5" style="--i:5">
+            <span class="r-who"><span class="r-src">WhatsApp</span><span class="r-biz">Servicio técnico</span></span>
+            <span class="r-msg">¿Me pasás el presupuesto actualizado?</span>
+            <span class="r-wait" aria-hidden="true"><i style="--w:1"></i></span>
+            <span class="r-st"><span class="swap s-off"><b>Presupuesto sin seguimiento</b><small>hace 3 días</small></span><span class="swap s-on"><b><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg>Seguimiento programado</b><small>jueves 10:00</small></span></span>
+          </li>
+        </ol>
+      </div>
+      <div class="demo-foot">
+        <p class="note">Escenario ilustrativo: empresas y mensajes de ejemplo, no son clientes.</p>
+        <p class="note sr" aria-live="polite" id="demo-live"></p>
+      </div>
     </div>
   </section>
 
-  <div class="wrap">
-    <section class="row" aria-labelledby="problema">
-      <h2 id="problema">El problema no es recibir consultas. Es lo que pasa después.</h2>
-      <div>
-        <p class="lead">En muchas empresas el trabajo se frena siempre en los mismos lugares:</p>
-        <ul class="list">
-          <li>Consultas por WhatsApp, Instagram o la web que se responden tarde o quedan sin respuesta.</li>
-          <li>Presupuestos y leads sin seguimiento, que se enfrían.</li>
-          <li>Datos que alguien carga a mano en planillas, mails y sistemas que no se hablan entre sí.</li>
-          <li>Tareas que se repiten todos los días y ocupan a personas que podrían estar en otra cosa.</li>
-        </ul>
+  <section class="sec" id="ia" aria-labelledby="ia-title">
+    <div class="wrap ia">
+      <div class="dial-wrap" aria-hidden="true">
+        <svg class="dial" viewBox="0 0 400 400">
+          <circle class="ring-a" cx="200" cy="200" r="190"/>
+          <g class="ticks" id="ticks"></g>
+          <circle class="ring-b" cx="200" cy="200" r="122"/>
+          <g class="dial-rot">
+            <line class="arm" x1="200" y1="200" x2="200" y2="78"/>
+            <circle class="sat" cx="200" cy="78" r="7"/>
+          </g>
+          <circle class="core-ring" cx="200" cy="200" r="46"/>
+          <circle class="core" cx="200" cy="200" r="20"/>
+        </svg>
       </div>
-    </section>
-
-    <section class="row" aria-labelledby="construimos">
-      <h2 id="construimos">Qué construimos</h2>
       <div>
-        <p class="lead">Cada proyecto parte del proceso real de la empresa, no de una herramienta. Primero entendemos cómo trabajan; después armamos el sistema alrededor de eso.</p>
-        <ul class="list">
-          <li>Atención de consultas con IA, por WhatsApp y web.</li>
-          <li>Seguimiento automático de leads y presupuestos.</li>
-          <li>Clasificación y derivación de consultas al equipo correcto.</li>
-          <li>Recordatorios, turnos y reservas.</li>
-          <li>CRM e integraciones entre las herramientas que ya usás.</li>
-          <li>Dashboards y herramientas internas.</li>
-          <li>Sistemas a medida.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="row" aria-labelledby="ejemplos">
-      <h2 id="ejemplos">Ejemplos de uso</h2>
-      <div>
-        <p class="tag">Son escenarios ilustrativos de cómo se aplica, no casos de clientes.</p>
-        <article class="example">
-          <h3>Alquiler temporario</h3>
-          <p>Una consulta de disponibilidad entra por WhatsApp. El sistema responde al momento con las fechas libres, pide los datos que faltan y deja el contacto cargado. Si la persona no confirma, el equipo recibe un aviso para retomar la conversación.</p>
-        </article>
-        <article class="example">
-          <h3>Servicios con vencimientos</h3>
-          <p>Mantenimientos, recargas, controles: cada cliente tiene su fecha. Antes de que venza, el sistema avisa, ofrece reprogramar y registra la respuesta. Nadie tiene que acordarse.</p>
-        </article>
-        <article class="example">
-          <h3>Venta por presupuesto</h3>
-          <p>Cada presupuesto enviado queda con un seguimiento programado. Si pasan unos días sin respuesta, el vendedor recibe el aviso con el contexto listo para retomarlo.</p>
-        </article>
-        <article class="example">
-          <h3>Consultas de distintos públicos</h3>
-          <p>Clientes, empresas y proveedores escriben por el mismo canal. El sistema distingue quién es y deriva cada consulta a la persona que corresponde, con un resumen.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="row" aria-labelledby="metodo">
-      <h2 id="metodo">Cómo trabajamos</h2>
-      <div>
-        <ol class="steps">
-          <li>Entender</li>
-          <li>Detectar</li>
-          <li>Diseñar</li>
-          <li>Implementar</li>
-          <li>Probar</li>
-          <li>Medir</li>
-          <li>Mejorar</li>
-        </ol>
-        <p>Empezamos con una charla corta para entender cómo trabajan hoy. Si hay algo concreto para mejorar, te mostramos un ejemplo aplicado a tu caso. Cada proyecto se cotiza según el problema: no hay planes cerrados.</p>
-        <p class="note">No todo conviene automatizarlo. Lo repetitivo lo hace el sistema; lo que pide criterio, empatía o decisión lo sigue haciendo una persona.</p>
-      </div>
-    </section>
-  </div>
-
-  <section class="cta" id="hablemos" aria-labelledby="hablemos-titulo">
-    <div class="wrap">
-      <div class="row">
-        <h2 id="hablemos-titulo">Hablemos de tu proceso.</h2>
-        <div>
-          <p class="lead">Una llamada de 10 a 15 minutos para entender cómo trabajan hoy y ver si hay algo para mejorar.</p>
-          <div class="actions">
-            <a class="btn btn-primary" href="https://ig.me/m/benja.fridman" target="_blank" rel="noopener noreferrer">Agendá 15 minutos</a>
-            <a class="btn btn-ghost" href="mailto:solutions@ycdoficial.com?subject=Quiero%20hablar%20con%20YCD">solutions@ycdoficial.com</a>
-          </div>
-          <p class="contact">Instagram: @benja.fridman · Trabajamos con empresas de Argentina.</p>
+        <h2 class="h2" id="ia-title">La IA no reemplaza tu negocio. Hace que funcione mejor.</h2>
+        <p class="lede">No usamos IA como etiqueta. La aplicamos donde puede entender contexto, tomar decisiones controladas y sacarle trabajo repetitivo a tu equipo.</p>
+        <div class="tabs" role="tablist" aria-label="Qué construimos">
+          <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="true">Atención con IA</button>
+          <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Seguimiento</button>
+          <button class="tab" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">Clasificación</button>
+          <button class="tab" role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">Turnos y reservas</button>
+          <button class="tab" role="tab" id="t5" aria-controls="p5" aria-selected="false" tabindex="-1">CRM e integraciones</button>
+          <button class="tab" role="tab" id="t6" aria-controls="p6" aria-selected="false" tabindex="-1">Dashboards</button>
+          <button class="tab" role="tab" id="t7" aria-controls="p7" aria-selected="false" tabindex="-1">A medida</button>
         </div>
+        <div class="panels">
+          <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1"><p>Una consulta entra por WhatsApp o por la web a cualquier hora y se responde en el momento, con la información real de tu negocio.</p><p class="note">Ejemplo ilustrativo</p></div>
+          <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden><p>Un presupuesto enviado queda con su seguimiento programado. Si no hay respuesta, el sistema retoma la conversación y avisa al vendedor.</p><p class="note">Ejemplo ilustrativo</p></div>
+          <div class="panel" role="tabpanel" id="p3" aria-labelledby="t3" hidden><p>Clientes, proveedores y reclamos escriben por el mismo canal. Cada consulta queda clasificada y llega a la persona que corresponde, con un resumen.</p><p class="note">Ejemplo ilustrativo</p></div>
+          <div class="panel" role="tabpanel" id="p4" aria-labelledby="t4" hidden><p>El sistema mira la disponibilidad, ofrece horarios y confirma el turno. Antes de la fecha, recuerda y permite reprogramar.</p><p class="note">Ejemplo ilustrativo</p></div>
+          <div class="panel" role="tabpanel" id="p5" aria-labelledby="t5" hidden><p>Los datos que hoy alguien copia a mano entre planillas, mails y sistemas pasan solos al lugar donde se usan.</p><p class="note">Ejemplo ilustrativo</p></div>
+          <div class="panel" role="tabpanel" id="p6" aria-labelledby="t6" hidden><p>Cuántas consultas entraron, cuántas se respondieron y dónde se trabó el proceso, a la vista en un solo lugar.</p><p class="note">Ejemplo ilustrativo</p></div>
+          <div class="panel" role="tabpanel" id="p7" aria-labelledby="t7" hidden><p>Cuando ninguna herramienta resuelve el proceso como es, construimos el sistema a medida, alrededor de cómo trabajan.</p><p class="note">Ejemplo ilustrativo</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="capa" aria-labelledby="capa-title">
+    <div class="wrap">
+      <div class="capa-head">
+        <h2 class="h2" id="capa-title">Una capa inteligente entre tus canales, tus datos y tu operación.</h2>
+        <p class="lede">Conectamos lo que ya usás para que la información fluya sola, sin que nadie la copie a mano.</p>
+      </div>
+      <div class="net" id="net" role="img" aria-label="Diagrama: YCD en el centro conecta WhatsApp, Instagram, formularios web, email, CRM, planillas, calendario, n8n, APIs, bases de datos, agentes de IA y voz.">
+        <svg class="links" aria-hidden="true"></svg>
+        <div class="hub" style="--x:50%;--y:50%" aria-hidden="true">
+          <svg class="mark" viewBox="0 0 32 32"><circle class="mark-ring" cx="16" cy="16" r="11" fill="none" stroke-width="1.5"/><circle cx="16" cy="16" r="4.3" fill="#6EDCF4"/><circle cx="16" cy="5" r="2.5" fill="#EDF6FC"/></svg>
+          <strong>YCD</strong>
+          <span>Capa de inteligencia</span>
+        </div>
+        <span class="node" data-d="50,9" data-m="50,10" aria-hidden="true">WhatsApp</span>
+        <span class="node" data-d="72,15" data-m="73.3,21.7" aria-hidden="true">Instagram</span>
+        <span class="node" data-d="86.5,31" data-m="73.3,78.3" aria-hidden="true">Formularios web</span>
+        <span class="node" data-d="90,50" data-m="83,50" aria-hidden="true">Email</span>
+        <span class="node" data-d="86,69" data-m="17,50" aria-hidden="true">CRM</span>
+        <span class="node" data-d="71,86" data-m="26.7,78.3" aria-hidden="true">Planillas</span>
+        <span class="node" data-d="50,91" data-m="50,90" aria-hidden="true">Calendario</span>
+        <span class="node" data-d="29,86" data-m="hide" aria-hidden="true">n8n</span>
+        <span class="node" data-d="14,69" data-m="hide" aria-hidden="true">APIs</span>
+        <span class="node" data-d="10,50" data-m="hide" aria-hidden="true">Bases de datos</span>
+        <span class="node" data-d="13.5,31" data-m="26.7,21.7" aria-hidden="true">Agentes de IA</span>
+        <span class="node" data-d="28,15" data-m="hide" aria-hidden="true">Voz</span>
+      </div>
+      <p class="note net-note">Trabajamos con las herramientas que ya tenés. Si hace falta algo que no existe, lo construimos.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="metodo" aria-labelledby="metodo-title">
+    <div class="wrap">
+      <h2 class="h2" id="metodo-title">Primero entendemos cómo trabajan. Después construimos.</h2>
+      <ol class="method" id="method">
+        <li class="step"><h3>Entender</h3><p>Una charla corta para ver cómo trabajan hoy.</p></li>
+        <li class="step"><h3>Detectar</h3><p>Dónde se pierden consultas, tiempo o información.</p></li>
+        <li class="step"><h3>Diseñar</h3><p>El sistema alrededor de su proceso, no al revés.</p></li>
+        <li class="step"><h3>Implementar</h3><p>Conectado a las herramientas que ya usan.</p></li>
+        <li class="step"><h3>Probar</h3><p>Con casos reales, antes de soltarlo.</p></li>
+        <li class="step"><h3>Medir</h3><p>Qué cambió, con datos y no con impresiones.</p></li>
+        <li class="step"><h3>Mejorar</h3><p>Ajustamos y el sistema sigue creciendo.</p></li>
+      </ol>
+      <div class="method-foot">
+        <p><strong>No todo conviene automatizarlo.</strong> El sistema se ocupa de lo repetitivo y la persona entra cuando hace falta criterio.</p>
+        <p><strong>Sin planes cerrados.</strong> Cada proyecto se cotiza según el problema que resuelve.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="equipo" aria-labelledby="equipo-title">
+    <div class="wrap own">
+      <div>
+        <h2 class="h2" id="equipo-title">Usamos lo mismo que construimos.</h2>
+        <p class="lede">YCD funciona con sus propios sistemas. Si nos escribís, lo vas a ver vos mismo.</p>
+        <ol class="flow">
+          <li><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></svg><div><b>Nos escribís por Instagram</b><span>Contanos en dos líneas qué querés mejorar.</span></div></li>
+          <li><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></svg><div><b>Te responde el asistente de YCD</b><span>Es una IA y te lo dice. Entiende qué necesitás y te propone horarios.</span></div></li>
+          <li><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M253.66,133.66l-24,24a8,8,0,0,1-11.32,0l-24-24a8,8,0,0,1,11.32-11.32L216,132.69V128A88,88,0,0,0,56.49,76.67a8,8,0,0,1-13-9.34A104,104,0,0,1,232,128v4.69l10.34-10.35a8,8,0,0,1,11.32,11.32Zm-41.18,55A104,104,0,0,1,24,128v-4.69L13.66,133.66A8,8,0,0,1,2.34,122.34l24-24a8,8,0,0,1,11.32,0l24,24a8,8,0,0,1-11.32,11.32L40,123.31V128a87.62,87.62,0,0,0,22.24,58.41A79.66,79.66,0,0,1,98.3,157.66a48,48,0,1,1,59.4,0,79.59,79.59,0,0,1,36.08,28.78,89.68,89.68,0,0,0,5.71-7.11,8,8,0,0,1,13,9.34ZM128,152a32,32,0,1,0-32-32A32,32,0,0,0,128,152Zm0,64a88.2,88.2,0,0,0,53.92-18.49,64,64,0,0,0-107.84,0A87.57,87.57,0,0,0,128,216Z"/></svg><div><b>Cuando hace falta criterio, entramos nosotros</b><span>Una llamada de 10 a 15 minutos para entender tu proceso.</span></div></li>
+        </ol>
+      </div>
+      <div class="team">
+        <h3>Quiénes somos</h3>
+        <div class="person"><span class="mono-av" aria-hidden="true">BF</span><div><b>Benjamín Fridman</b><span>Cofundador</span></div></div>
+        <div class="person"><span class="mono-av" aria-hidden="true">EE</span><div><b>Elián Engelberg</b><span>Cofundador</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="close" id="hablemos" aria-labelledby="close-title">
+    <div class="wrap">
+      <h2 class="h2" id="close-title">Hablemos de tu proceso.</h2>
+      <p class="lede">Una llamada de 10 a 15 minutos para entender cómo trabajan hoy y ver si hay algo para mejorar.</p>
+      <div class="close-cta">
+        <a class="btn btn-primary" href="https://ig.me/m/benja.fridman" target="_blank" rel="noopener noreferrer">Hablar con YCD<svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></svg></a>
+        <a class="btn btn-ghost" href="mailto:solutions@ycdoficial.com?subject=Quiero%20hablar%20con%20YCD"><svg class="icon" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></svg>solutions@ycdoficial.com</a>
       </div>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="foot">
   <div class="wrap">
-    <p>¿Recibiste un mensaje comercial nuestro y no querés recibir más? Escribinos a <a href="mailto:solutions@ycdoficial.com?subject=Baja">solutions@ycdoficial.com</a> y no te volvemos a contactar.</p>
-    <p>© 2026 YCD</p>
+    <p>¿Recibiste un mensaje nuestro y no querés recibir más? Escribinos a <a href="mailto:solutions@ycdoficial.com?subject=Baja">solutions@ycdoficial.com</a> y no te volvemos a contactar.</p>
+    <p>© 2026 YCD. Trabajamos con empresas de Argentina.</p>
   </div>
 </footer>
+<script src="app.js" defer></script>
 </body>
 </html>
